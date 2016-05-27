@@ -16,7 +16,7 @@ public class BenutzerSitzung {
     private int zeitVorgabe;
     private Benutzer benutzer;
     private ArrayList<SitzungsLernKarte> sLKs;
-    private int aktuellerSLKindex;
+    private int aktuellerSLKIndex;
 
     public BenutzerSitzung(int zeitVorgabe, Benutzer benutzer,
             ArrayList<LernKarte> lKs) {
@@ -41,11 +41,11 @@ public class BenutzerSitzung {
     }
 
     public SitzungsLernKarte getAktuelleSitzungsLernKarte() {
-        return sLKs.get(aktuellerSLKindex);
+        return sLKs.get(aktuellerSLKIndex);
     }
     
     public SitzungsLernKarte geheZu(int nummer) {
-        aktuellerSLKindex=nummer-1;
+        aktuellerSLKIndex=nummer-1;
         return getAktuelleSitzungsLernKarte();
     }
     
@@ -56,9 +56,9 @@ public class BenutzerSitzung {
         if (modus == 1) {
             rueckgabe += "noch nicht drin";
         } else {
-            rueckgabe += "Frage " + (aktuellerSLKindex + 1) + " / " + sLKs.size();
+            rueckgabe += "Frage " + (aktuellerSLKIndex + 1) + " / " + sLKs.size();
             rueckgabe += " (ID : " +getAktuelleSitzungsLernKarte().getlK().getId() + ")";
-            rueckgabe += "Schwierigkeit " + sLKs.get(aktuellerSLKindex).getlK().getSchwierigkeitsGrad();
+            rueckgabe += "Schwierigkeit " + sLKs.get(aktuellerSLKIndex).getlK().getSchwierigkeitsGrad();
         }
         return rueckgabe;
     }
@@ -66,7 +66,7 @@ public class BenutzerSitzung {
     public SitzungsLernKarte getNextSitzungsLernKarte() {
         if (aktuellerSLKIndex < sLKs.size() - 1) {
             aktuellerSLKIndex++;
-            sLK.cache();
+            //sLK.cache();
         }
         return getAktuelleSitzungsLernKarte();
     }
@@ -74,8 +74,7 @@ public class BenutzerSitzung {
     public SitzungsLernKarte getPrevSitzungsLernKarte() {
         if (aktuellerSLKIndex > 0) {
             aktuellerSLKIndex--;
-            sLK.cache();
-            
+            //sLK.cache();   
         }
         return getAktuelleSitzungsLernKarte();
     }
