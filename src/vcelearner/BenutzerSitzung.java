@@ -62,5 +62,22 @@ public class BenutzerSitzung {
         }
         return rueckgabe;
     }
+    
+    public SitzungsLernKarte getNextSitzungsLernKarte() {
+        if (aktuellerSLKIndex < sLKs.size() - 1) {
+            aktuellerSLKIndex++;
+            sLK.cache();
+        }
+        return getAktuelleSitzungsLernKarte();
+    }
+
+    public SitzungsLernKarte getPrevSitzungsLernKarte() {
+        if (aktuellerSLKIndex > 0) {
+            aktuellerSLKIndex--;
+            sLK.cache();
+            
+        }
+        return getAktuelleSitzungsLernKarte();
+    }
 
 }
