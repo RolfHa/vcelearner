@@ -420,16 +420,12 @@ public class LernenUIMockup extends javax.swing.JFrame {
         cache();
         session.getNextSitzungsLernKarte();
         fillWithValues();
-
-
     }//GEN-LAST:event_buttonVorActionPerformed
 
     private void buttonZurueckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZurueckActionPerformed
         cache();
         session.getPrevSitzungsLernKarte();
         fillWithValues();
-
-
     }//GEN-LAST:event_buttonZurueckActionPerformed
 
     private void toggleButtonWiedervorlageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonWiedervorlageActionPerformed
