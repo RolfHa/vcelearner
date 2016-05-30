@@ -3,9 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -242,6 +239,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Frage X von Y (ID=Z) Schwierigkeitsgrad=0"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTitelMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTitelMouseExited"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="paneFrage">
       <AuxValues>
@@ -275,6 +276,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="labelTimer">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="00:00"/>
       </Properties>
     </Component>
@@ -282,11 +286,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonVorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonZurueck">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonZurueckActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonGeheZu">
       <Properties>
@@ -305,6 +315,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Wiedervorlage"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleButtonWiedervorlageActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="toggleButtonMogeln">
       <Properties>

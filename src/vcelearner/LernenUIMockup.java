@@ -5,6 +5,10 @@
  */
 package vcelearner;
 
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author J.Weidehaas
@@ -22,7 +26,14 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
             textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
             textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+
+        checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
+            checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
+
+        timerDauer = session.getZeitVorgabe();
+        timerZaehlt();
         fillWithValues();
+
     }
 
     public LernenUIMockup(BenutzerSitzung session) {
@@ -32,16 +43,37 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
             textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
             textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+
         checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
             checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
+
+        timerDauer = session.getZeitVorgabe();
+        timerZaehlt();
         fillWithValues();
     }
 
     public void fillWithValues() {
+
+        if (session.getAktuellerSLKIndex() < session.getsLKs().size() - 1) {
+            buttonVor.setEnabled(true);
+        } else {
+            buttonVor.setEnabled(false);
+        }
+
+        if (session.getAktuellerSLKIndex() > 0) {
+            buttonZurueck.setEnabled(true);
+        } else {
+            buttonZurueck.setEnabled(false);
+        }
+
         textAreaFrage.setText(session.getAktuelleSitzungsLernKarte().getlK().getFrage());
 
         labelTitel.setText(session.getTitelString(0));
-       
+
+        toggleButtonMogeln.setSelected(session.getAktuelleSitzungsLernKarte().isGemogelt());
+
+        toggleButtonWiedervorlage.setSelected(session.getAktuelleSitzungsLernKarte().isWiederVorlage());
+
         for (int i = 0; i < 8; i++) {
             if (i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size()) {
                 textAreasAntwort[i].setText(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i).getAntwort());
@@ -66,13 +98,67 @@ public class LernenUIMockup extends javax.swing.JFrame {
         }
 
     }
-    
-    private void leseModus () {
+
+    private void leseModus() {
         for (javax.swing.JCheckBox cb : checkBoxesAntwort) {
             cb.setEnabled(false);
         }
         session.geheZu(1);
         fillWithValues();
+    }
+
+    private void timerZaehlt() {
+
+        zaehlerLaeuft = true;
+
+        final long start = System.currentTimeMillis();
+        final long end = start + timerDauer * 60 * 1000;
+        // Setzen Eingabe für Dauer auf 19min fest , Variable ist timerDauer
+
+        final Timer timer = new Timer(1000, null);
+        timer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //long zwischen = 0;  
+                long now = System.currentTimeMillis();
+                if (now >= end) {
+                    //remainingMinLabel.setText( "" );
+                    labelTimer.setText("");
+                    //startButton.setEnabled( true );
+                    //JOptionPane.showMessageDialog( null, "BING!" );
+                    timer.stop();
+                    zaehlerLaeuft = false;
+
+                } else //zwischen = (end-now)/1000; 
+                {
+                    labelTimer.setText(" " + ((end - now) / 60000) + ":"
+                            + (((end - now) / 1000) % 60));
+                }
+            }
+        });
+        timer.start();
+
+    }
+
+    public void cache() {
+
+        for (int i = 0; i < checkBoxesAntwort.length; i++) {
+            if (i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size()) {
+
+                if ((checkBoxesAntwort[i].isSelected() == true)
+                        && !session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().contains(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i))) {
+                    session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().add(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i));
+                } else if ((checkBoxesAntwort[i].isSelected() == false)
+                        && session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().contains(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i))) {
+                    session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().remove(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i));
+                }
+            }
+        }
+
+        session.getAktuelleSitzungsLernKarte().setWiederVorlage((toggleButtonWiedervorlage.isSelected()));
+
+        if (toggleButtonMogeln.isSelected()) {
+            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
+        }
     }
 
     /**
@@ -121,9 +207,16 @@ public class LernenUIMockup extends javax.swing.JFrame {
         checkBoxH = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         labelTitel.setText("Frage X von Y (ID=Z) Schwierigkeitsgrad=0");
+        labelTitel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelTitelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelTitelMouseExited(evt);
+            }
+        });
 
         textAreaFrage.setColumns(20);
         textAreaFrage.setRows(5);
@@ -133,11 +226,22 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreaAntwortA.setRows(5);
         jScrollPane1.setViewportView(textAreaAntwortA);
 
+        labelTimer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTimer.setText("00:00");
 
         buttonVor.setText(">>");
+        buttonVor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVorActionPerformed(evt);
+            }
+        });
 
         buttonZurueck.setText("<<");
+        buttonZurueck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonZurueckActionPerformed(evt);
+            }
+        });
 
         buttonGeheZu.setText("gehe zu:");
         buttonGeheZu.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +253,11 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textFieldGeheZu.setText("ID");
 
         toggleButtonWiedervorlage.setText("Wiedervorlage");
+        toggleButtonWiedervorlage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleButtonWiedervorlageActionPerformed(evt);
+            }
+        });
 
         toggleButtonMogeln.setText("Antwort anzeigen");
 
@@ -369,9 +478,34 @@ public class LernenUIMockup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGeheZuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGeheZuActionPerformed
-     session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
-     fillWithValues();
+        cache();
+        session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
+        fillWithValues();
     }//GEN-LAST:event_buttonGeheZuActionPerformed
+
+    private void buttonVorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVorActionPerformed
+        cache();
+        session.getNextSitzungsLernKarte();
+        fillWithValues();
+    }//GEN-LAST:event_buttonVorActionPerformed
+
+    private void buttonZurueckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZurueckActionPerformed
+        cache();
+        session.getPrevSitzungsLernKarte();
+        fillWithValues();
+    }//GEN-LAST:event_buttonZurueckActionPerformed
+
+    private void toggleButtonWiedervorlageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonWiedervorlageActionPerformed
+        session.getAktuelleSitzungsLernKarte().setWiederVorlage(true);
+    }//GEN-LAST:event_toggleButtonWiedervorlageActionPerformed
+
+    private void labelTitelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTitelMouseEntered
+        labelTitel.setText(session.getTitelString(1));
+    }//GEN-LAST:event_labelTitelMouseEntered
+
+    private void labelTitelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTitelMouseExited
+        labelTitel.setText(session.getTitelString(0));
+    }//GEN-LAST:event_labelTitelMouseExited
 
     private void ButtonEndeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEndeActionPerformed
         if (modus == 0) {
@@ -417,6 +551,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
     private int modus = 0; //LernModus = 0, LeseModus = 1
     private javax.swing.JCheckBox[] checkBoxesAntwort;
+    Boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
+    int timerDauer; // max. Laufzeit des Timers (aus der Vorauswahlmodul in Minuten)
     private javax.swing.JTextArea[] textAreasAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonEnde;
