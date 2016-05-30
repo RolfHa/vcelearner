@@ -32,6 +32,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
             textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
             textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+        checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
+            checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
         fillWithValues();
     }
 
@@ -43,11 +45,34 @@ public class LernenUIMockup extends javax.swing.JFrame {
         for (int i = 0; i < 8; i++) {
             if (i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size()) {
                 textAreasAntwort[i].setText(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i).getAntwort());
+                if (modus == 0) { //wenn Lernmodus
+                    checkBoxesAntwort[i].setEnabled(true); // Checkbox aktivieren
+                } else { // wenn nicht Lernmodus, also Lesemodus
+                    // #WIP hier code zur hervorhebung der richtigen/falschen Antworten
+                }
+                if (session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().contains(
+                        session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i))) {
+                    // wenn Antwort unter den gegebenen Antworten
+                    checkBoxesAntwort[i].setSelected(true);
+                } else {
+                    // wenn und Antwort nicht unter den gegebenen Antworten
+                    checkBoxesAntwort[i].setSelected(false);
+                }
             } else {
                 textAreasAntwort[i].setText("");
+                checkBoxesAntwort[i].setSelected(false);
+                checkBoxesAntwort[i].setEnabled(false);
             }
         }
 
+    }
+    
+    private void leseModus () {
+        for (javax.swing.JCheckBox cb : checkBoxesAntwort) {
+            cb.setEnabled(false);
+        }
+        session.geheZu(1);
+        fillWithValues();
     }
 
     /**
@@ -128,6 +153,11 @@ public class LernenUIMockup extends javax.swing.JFrame {
         toggleButtonMogeln.setText("Antwort anzeigen");
 
         ButtonEnde.setText("Beenden");
+        ButtonEnde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEndeActionPerformed(evt);
+            }
+        });
 
         checkBoxA.setText("A:");
 
@@ -285,9 +315,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addComponent(checkBoxC)))
@@ -345,6 +373,13 @@ public class LernenUIMockup extends javax.swing.JFrame {
      fillWithValues();
     }//GEN-LAST:event_buttonGeheZuActionPerformed
 
+    private void ButtonEndeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEndeActionPerformed
+        if (modus == 0) {
+            session.speichereInDB();
+            leseModus();
+        }
+    }//GEN-LAST:event_ButtonEndeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -380,6 +415,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
         });
     }
 
+    private int modus = 0; //LernModus = 0, LeseModus = 1
+    private javax.swing.JCheckBox[] checkBoxesAntwort;
     private javax.swing.JTextArea[] textAreasAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonEnde;

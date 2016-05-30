@@ -62,5 +62,22 @@ public class BenutzerSitzung {
         }
         return rueckgabe;
     }
+    
+    public void speichereInDB() {
+        // Dummy-Code
+        String ausgabe="\nBenutzer : "+benutzer.getLogin();
+        ausgabe += "\nZeitlimit : "+zeitVorgabe;
+        for (SitzungsLernKarte sLK : sLKs) {
+            ausgabe += "\nFrage-ID "+sLK.getlK().getId()+" gegebene Antworten : ";
+            for (PotentielleAntwort pA : sLK.getlK().getpAs()) {
+                if (sLK.getGegebeneAntworten().contains(pA)) {
+                    ausgabe += pA.getId()+"("+(sLK.getlK().getpAs().indexOf(pA)+1)+"), ";
+                }
+            }
+            ausgabe += "Gemogelt = "+sLK.isGemogelt()+", Wiedervorlage = "+
+                    sLK.isWiederVorlage()+"\n";
+        }
+        System.out.println(ausgabe);
+    }
 
 }
