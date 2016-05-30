@@ -5,6 +5,11 @@
  */
 package vcelearner;
 
+
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author J.Weidehaas
@@ -22,7 +27,10 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
             textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
             textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+        timerDauer = session.getZeitVorgabe();
+        timerZaehlt ();
         fillWithValues();
+        
     }
 
     public LernenUIMockup(BenutzerSitzung session) {
@@ -32,6 +40,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
             textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
             textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+        timerDauer = session.getZeitVorgabe();
+        timerZaehlt ();
         fillWithValues();
     }
 
@@ -47,6 +57,38 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 textAreasAntwort[i].setText("");
             }
         }
+
+    }
+    
+    private void timerZaehlt() {
+
+        zaehlerLaeuft = true;
+
+        final long start = System.currentTimeMillis();
+        final long end = start + timerDauer * 60 * 1000;
+        // Setzen Eingabe für Dauer auf 19min fest , Variable ist timerDauer
+
+        final Timer timer = new Timer(1000, null);
+        timer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //long zwischen = 0;  
+                long now = System.currentTimeMillis();
+                if (now >= end) {
+                    //remainingMinLabel.setText( "" );
+                    labelTimer.setText("");
+                    //startButton.setEnabled( true );
+                    //JOptionPane.showMessageDialog( null, "BING!" );
+                    timer.stop();
+                    zaehlerLaeuft = false;
+
+                } else //zwischen = (end-now)/1000; 
+                {
+                    labelTimer.setText(" " + ((end - now) / 60000) + ":" +
+                            (((end - now) / 1000) % 60) );
+                }
+            }
+        });
+        timer.start();
 
     }
 
@@ -108,6 +150,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreaAntwortA.setRows(5);
         jScrollPane1.setViewportView(textAreaAntwortA);
 
+        labelTimer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTimer.setText("00:00");
 
         buttonVor.setText(">>");
@@ -285,9 +328,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addComponent(checkBoxC)))
@@ -379,7 +420,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
             }
         });
     }
-
+Boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
+int timerDauer; // max. Laufzeit des Timers (aus der Vorauswahlmodul in Minuten)
     private javax.swing.JTextArea[] textAreasAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonEnde;

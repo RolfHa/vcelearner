@@ -165,10 +165,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane10" min="-2" pref="58" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane10" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="checkBoxC" min="-2" max="-2" attributes="0"/>
@@ -278,6 +275,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="labelTimer">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="00:00"/>
       </Properties>
     </Component>
