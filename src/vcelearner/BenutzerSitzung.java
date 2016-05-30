@@ -65,8 +65,7 @@ public class BenutzerSitzung {
     
     public SitzungsLernKarte getNextSitzungsLernKarte() {
         if (aktuellerSLKIndex < sLKs.size() - 1) {
-            aktuellerSLKIndex++;
-            //sLK.cache();
+            aktuellerSLKIndex++;  
         }
         return getAktuelleSitzungsLernKarte();
     }
@@ -74,7 +73,6 @@ public class BenutzerSitzung {
     public SitzungsLernKarte getPrevSitzungsLernKarte() {
         if (aktuellerSLKIndex > 0) {
             aktuellerSLKIndex--;
-            //sLK.cache();   
         }
         return getAktuelleSitzungsLernKarte();
     }
