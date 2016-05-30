@@ -12,13 +12,14 @@ import java.util.ArrayList;
  * @author J.Bleich
  */
 public class SitzungsLernKarte {
+
     private LernKarte lK;
     private ArrayList<PotentielleAntwort> gegebeneAntworten;
     private boolean wiederVorlage;
     private boolean gemogelt;
-    
-    public SitzungsLernKarte (LernKarte lK) {
-        this.lK=lK;
+
+    public SitzungsLernKarte(LernKarte lK) {
+        this.lK = lK;
     }
 
     public ArrayList<PotentielleAntwort> getGegebeneAntworten() {
@@ -48,6 +49,5 @@ public class SitzungsLernKarte {
     public LernKarte getlK() {
         return lK;
     }
-    
-    
+
 }

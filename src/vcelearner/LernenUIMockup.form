@@ -3,9 +3,6 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -286,11 +283,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonVorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonZurueck">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonZurueckActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonGeheZu">
       <Properties>
@@ -309,6 +312,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Wiedervorlage"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toggleButtonWiedervorlageActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="toggleButtonMogeln">
       <Properties>

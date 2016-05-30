@@ -16,7 +16,7 @@ public class BenutzerSitzung {
     private int zeitVorgabe;
     private Benutzer benutzer;
     private ArrayList<SitzungsLernKarte> sLKs;
-    private int aktuellerSLKindex;
+    private int aktuellerSLKIndex;
 
     public BenutzerSitzung(int zeitVorgabe, Benutzer benutzer,
             ArrayList<LernKarte> lKs) {
@@ -26,6 +26,10 @@ public class BenutzerSitzung {
         for (LernKarte lK : lKs) {
             this.sLKs.add(new SitzungsLernKarte(lK));
         }
+    }
+
+    public int getAktuellerSLKIndex() {
+        return aktuellerSLKIndex;
     }
 
     public int getZeitVorgabe() {
@@ -41,11 +45,11 @@ public class BenutzerSitzung {
     }
 
     public SitzungsLernKarte getAktuelleSitzungsLernKarte() {
-        return sLKs.get(aktuellerSLKindex);
+        return sLKs.get(aktuellerSLKIndex);
     }
     
     public SitzungsLernKarte geheZu(int nummer) {
-        aktuellerSLKindex=nummer-1;
+        aktuellerSLKIndex=nummer-1;
         return getAktuelleSitzungsLernKarte();
     }
     
@@ -56,11 +60,25 @@ public class BenutzerSitzung {
         if (modus == 1) {
             rueckgabe += "Themenbereich(e): " + getAktuelleSitzungsLernKarte().getlK().gettBs().toString();
         } else {
-            rueckgabe += "Frage " + (aktuellerSLKindex + 1) + " / " + sLKs.size();
+            rueckgabe += "Frage " + (aktuellerSLKIndex + 1) + " / " + sLKs.size();
             rueckgabe += " (ID : " +getAktuelleSitzungsLernKarte().getlK().getId() + ")";
-            rueckgabe += "Schwierigkeit " + sLKs.get(aktuellerSLKindex).getlK().getSchwierigkeitsGrad();
+            rueckgabe += "Schwierigkeit " + sLKs.get(aktuellerSLKIndex).getlK().getSchwierigkeitsGrad();
         }
         return rueckgabe;
+    }
+    
+    public SitzungsLernKarte getNextSitzungsLernKarte() {
+        if (aktuellerSLKIndex < sLKs.size() - 1) {
+            aktuellerSLKIndex++;  
+        }
+        return getAktuelleSitzungsLernKarte();
+    }
+
+    public SitzungsLernKarte getPrevSitzungsLernKarte() {
+        if (aktuellerSLKIndex > 0) {
+            aktuellerSLKIndex--;
+        }
+        return getAktuelleSitzungsLernKarte();
     }
 
 }
