@@ -5,6 +5,11 @@
  */
 package vcelearner;
 
+
+import java.awt.event.ActionEvent;
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author J.Weidehaas
@@ -26,8 +31,11 @@ public class LernenUIMockup extends javax.swing.JFrame {
         checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
             checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
 
+        timerDauer = session.getZeitVorgabe();
+        timerZaehlt ();
         fillWithValues();
 
+        
     }
 
     public LernenUIMockup(BenutzerSitzung session) {
@@ -41,6 +49,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
         checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
             checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
 
+        timerDauer = session.getZeitVorgabe();
+        timerZaehlt ();
         fillWithValues();
     }
 
@@ -83,6 +93,38 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 checkBoxesAntwort[i].setEnabled(false);
             }
         }
+
+    }
+    
+    private void timerZaehlt() {
+
+        zaehlerLaeuft = true;
+
+        final long start = System.currentTimeMillis();
+        final long end = start + timerDauer * 60 * 1000;
+        // Setzen Eingabe für Dauer auf 19min fest , Variable ist timerDauer
+
+        final Timer timer = new Timer(1000, null);
+        timer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //long zwischen = 0;  
+                long now = System.currentTimeMillis();
+                if (now >= end) {
+                    //remainingMinLabel.setText( "" );
+                    labelTimer.setText("");
+                    //startButton.setEnabled( true );
+                    //JOptionPane.showMessageDialog( null, "BING!" );
+                    timer.stop();
+                    zaehlerLaeuft = false;
+
+                } else //zwischen = (end-now)/1000; 
+                {
+                    labelTimer.setText(" " + ((end - now) / 60000) + ":" +
+                            (((end - now) / 1000) % 60) );
+                }
+            }
+        });
+        timer.start();
 
     }
 
@@ -173,6 +215,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreaAntwortA.setRows(5);
         jScrollPane1.setViewportView(textAreaAntwortA);
 
+        labelTimer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTimer.setText("00:00");
 
         buttonVor.setText(">>");
@@ -482,7 +525,8 @@ public class LernenUIMockup extends javax.swing.JFrame {
             }
         });
     }
-
+Boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
+int timerDauer; // max. Laufzeit des Timers (aus der Vorauswahlmodul in Minuten)
     private javax.swing.JTextArea[] textAreasAntwort;
     private javax.swing.JCheckBox[] checkBoxesAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables
