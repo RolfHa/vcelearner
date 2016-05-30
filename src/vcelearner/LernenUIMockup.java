@@ -45,6 +45,19 @@ public class LernenUIMockup extends javax.swing.JFrame {
     }
 
     public void fillWithValues() {
+
+        if (session.getAktuellerSLKIndex() < session.getsLKs().size() - 1) {
+            buttonVor.setEnabled(true);
+        } else {
+            buttonVor.setEnabled(false);
+        }
+
+        if (session.getAktuellerSLKIndex() > 0) {
+            buttonZurueck.setEnabled(true);
+        } else {
+            buttonZurueck.setEnabled(false);
+        }
+
         textAreaFrage.setText(session.getAktuelleSitzungsLernKarte().getlK().getFrage());
 
         labelTitel.setText(session.getTitelString(0));
@@ -81,7 +94,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 if ((checkBoxesAntwort[i].isSelected() == true)
                         && !session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().contains(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i))) {
                     session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().add(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i));
-                } else if ((checkBoxesAntwort[i].isSelected() == false) 
+                } else if ((checkBoxesAntwort[i].isSelected() == false)
                         && session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().contains(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i))) {
                     session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().remove(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i));
                 }
@@ -407,12 +420,16 @@ public class LernenUIMockup extends javax.swing.JFrame {
         cache();
         session.getNextSitzungsLernKarte();
         fillWithValues();
+
+
     }//GEN-LAST:event_buttonVorActionPerformed
 
     private void buttonZurueckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZurueckActionPerformed
         cache();
         session.getPrevSitzungsLernKarte();
         fillWithValues();
+
+
     }//GEN-LAST:event_buttonZurueckActionPerformed
 
     private void toggleButtonWiedervorlageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonWiedervorlageActionPerformed

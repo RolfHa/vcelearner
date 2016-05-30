@@ -28,6 +28,10 @@ public class BenutzerSitzung {
         }
     }
 
+    public int getAktuellerSLKIndex() {
+        return aktuellerSLKIndex;
+    }
+
     public int getZeitVorgabe() {
         return zeitVorgabe;
     }
