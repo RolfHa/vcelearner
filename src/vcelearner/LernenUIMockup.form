@@ -165,10 +165,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane10" min="-2" pref="58" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane10" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="checkBoxC" min="-2" max="-2" attributes="0"/>
@@ -245,6 +242,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Frage X von Y (ID=Z) Schwierigkeitsgrad=0"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTitelMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelTitelMouseExited"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="paneFrage">
       <AuxValues>

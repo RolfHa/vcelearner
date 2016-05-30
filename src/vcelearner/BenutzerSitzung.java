@@ -54,7 +54,7 @@ public class BenutzerSitzung {
         // modus 1 : Themengebiete
         String rueckgabe = "";
         if (modus == 1) {
-            rueckgabe += "noch nicht drin";
+            rueckgabe += "Themenbereich(e): " + getAktuelleSitzungsLernKarte().getlK().gettBs().toString();
         } else {
             rueckgabe += "Frage " + (aktuellerSLKindex + 1) + " / " + sLKs.size();
             rueckgabe += " (ID : " +getAktuelleSitzungsLernKarte().getlK().getId() + ")";

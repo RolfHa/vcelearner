@@ -39,7 +39,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
         textAreaFrage.setText(session.getAktuelleSitzungsLernKarte().getlK().getFrage());
 
         labelTitel.setText(session.getTitelString(0));
-       
+
         for (int i = 0; i < 8; i++) {
             if (i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size()) {
                 textAreasAntwort[i].setText(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i).getAntwort());
@@ -99,6 +99,14 @@ public class LernenUIMockup extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         labelTitel.setText("Frage X von Y (ID=Z) Schwierigkeitsgrad=0");
+        labelTitel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelTitelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelTitelMouseExited(evt);
+            }
+        });
 
         textAreaFrage.setColumns(20);
         textAreaFrage.setRows(5);
@@ -285,9 +293,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addComponent(checkBoxC)))
@@ -341,9 +347,17 @@ public class LernenUIMockup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonGeheZuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGeheZuActionPerformed
-     session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
-     fillWithValues();
+        session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
+        fillWithValues();
     }//GEN-LAST:event_buttonGeheZuActionPerformed
+
+    private void labelTitelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTitelMouseEntered
+        labelTitel.setText(session.getTitelString(1));
+    }//GEN-LAST:event_labelTitelMouseEntered
+
+    private void labelTitelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelTitelMouseExited
+        labelTitel.setText(session.getTitelString(0));
+    }//GEN-LAST:event_labelTitelMouseExited
 
     /**
      * @param args the command line arguments
