@@ -30,9 +30,9 @@ public class LernenUI extends javax.swing.JFrame {
 
         checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
             checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
-        
-        panelsAntwort = new javax.swing.JPanel[] {panelAntwortA, panelAntwortB, 
-            panelAntwortC, panelAntwortD, panelAntwortE, panelAntwortF, panelAntwortG, 
+
+        panelsAntwort = new javax.swing.JPanel[]{panelAntwortA, panelAntwortB,
+            panelAntwortC, panelAntwortD, panelAntwortE, panelAntwortF, panelAntwortG,
             panelAntwortH};
 
         timerDauer = session.getZeitVorgabe();
@@ -51,9 +51,9 @@ public class LernenUI extends javax.swing.JFrame {
 
         checkBoxesAntwort = new javax.swing.JCheckBox[]{checkBoxA, checkBoxB,
             checkBoxC, checkBoxD, checkBoxE, checkBoxF, checkBoxG, checkBoxH};
-        
-         panelsAntwort = new javax.swing.JPanel[] {panelAntwortA, panelAntwortB, 
-            panelAntwortC, panelAntwortD, panelAntwortE, panelAntwortF, panelAntwortG, 
+
+        panelsAntwort = new javax.swing.JPanel[]{panelAntwortA, panelAntwortB,
+            panelAntwortC, panelAntwortD, panelAntwortE, panelAntwortF, panelAntwortG,
             panelAntwortH};
 
         timerDauer = session.getZeitVorgabe();
@@ -79,13 +79,12 @@ public class LernenUI extends javax.swing.JFrame {
 
         labelTitel.setText(session.getTitelString(0));
 
-        toggleButtonMogeln.setSelected(session.getAktuelleSitzungsLernKarte().isGemogelt());
+        toggleButtonMogeln.setSelected(session.getAktuelleSitzungsLernKarte().isMogelnAktiv());
 
         toggleButtonWiedervorlage.setSelected(session.getAktuelleSitzungsLernKarte().isWiederVorlage());
 
-        panelFrage.setPreferredSize(new Dimension(800, 30+calcStringHoehe(textAreaFrage)));
-        
-        
+        panelFrage.setPreferredSize(new Dimension(800, 30 + calcStringHoehe(textAreaFrage)));
+
         for (int i = 0; i < 8; i++) {
             if (i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size()) {
                 textAreasAntwort[i].setText(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i).getAntwort());
@@ -102,13 +101,13 @@ public class LernenUI extends javax.swing.JFrame {
                     // wenn und Antwort nicht unter den gegebenen Antworten
                     checkBoxesAntwort[i].setSelected(false);
                 }
-                panelsAntwort[i].setPreferredSize(new Dimension(800, 30+calcStringHoehe(textAreasAntwort[i])));
+                panelsAntwort[i].setPreferredSize(new Dimension(800, 30 + calcStringHoehe(textAreasAntwort[i])));
                 panelsAntwort[i].setVisible(true);
             } else {
                 textAreasAntwort[i].setText("");
                 checkBoxesAntwort[i].setSelected(false);
                 checkBoxesAntwort[i].setEnabled(false);
-            
+
                 panelsAntwort[i].setVisible(false);
             }
         }
@@ -116,6 +115,7 @@ public class LernenUI extends javax.swing.JFrame {
     }
 
     private void leseModus() {
+        modus = 1;
         for (javax.swing.JCheckBox cb : checkBoxesAntwort) {
             cb.setEnabled(false);
         }
@@ -146,8 +146,13 @@ public class LernenUI extends javax.swing.JFrame {
 
                 } else //zwischen = (end-now)/1000; 
                 {
-                    labelTimer.setText(" " + ((end - now) / 60000) + ":"
-                            + (((end - now) / 1000) % 60));
+                    String countdown = ((end - now) / 60000) + ":";
+                    if ((((end - now) / 1000) % 60) > 9) {
+                        countdown += (((end - now) / 1000) % 60);
+                    } else {
+                        countdown += "0" + (((end - now) / 1000) % 60);
+                    }
+                    labelTimer.setText(countdown);
                 }
             }
         });
@@ -172,9 +177,6 @@ public class LernenUI extends javax.swing.JFrame {
 
         session.getAktuelleSitzungsLernKarte().setWiederVorlage((toggleButtonWiedervorlage.isSelected()));
 
-        if (toggleButtonMogeln.isSelected()) {
-            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
-        }
     }
 
     private static int calcZeilenZahl(String text) {
@@ -197,7 +199,7 @@ public class LernenUI extends javax.swing.JFrame {
         hoehe *= calcZeilenZahl(txtArea.getText());
         return hoehe;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -268,6 +270,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortD.setBackground(panelAntwortD.getBackground());
         scrollPaneAntwortD.setBorder(null);
 
+        textAreaAntwortD.setEditable(false);
         textAreaAntwortD.setBackground(panelAntwortD.getBackground());
         textAreaAntwortD.setColumns(20);
         textAreaAntwortD.setRows(1);
@@ -302,6 +305,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortC.setBackground(panelAntwortC.getBackground());
         scrollPaneAntwortC.setBorder(null);
 
+        textAreaAntwortC.setEditable(false);
         textAreaAntwortC.setBackground(panelAntwortC.getBackground());
         textAreaAntwortC.setColumns(20);
         textAreaAntwortC.setRows(1);
@@ -334,6 +338,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortA.setBackground(panelAntwortA.getBackground());
         scrollPaneAntwortA.setBorder(null);
 
+        textAreaAntwortA.setEditable(false);
         textAreaAntwortA.setBackground(panelAntwortA.getBackground());
         textAreaAntwortA.setColumns(20);
         textAreaAntwortA.setRows(1);
@@ -369,6 +374,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortF.setBackground(panelAntwortF.getBackground());
         scrollPaneAntwortF.setBorder(null);
 
+        textAreaAntwortF.setEditable(false);
         textAreaAntwortF.setBackground(panelAntwortF.getBackground());
         textAreaAntwortF.setColumns(20);
         textAreaAntwortF.setRows(1);
@@ -410,6 +416,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortE.setBackground(panelAntwortE.getBackground());
         scrollPaneAntwortE.setBorder(null);
 
+        textAreaAntwortE.setEditable(false);
         textAreaAntwortE.setBackground(panelAntwortE.getBackground());
         textAreaAntwortE.setColumns(20);
         textAreaAntwortE.setRows(1);
@@ -444,6 +451,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortB.setBackground(panelAntwortB.getBackground());
         scrollPaneAntwortB.setBorder(null);
 
+        textAreaAntwortB.setEditable(false);
         textAreaAntwortB.setBackground(panelAntwortB.getBackground());
         textAreaAntwortB.setColumns(20);
         textAreaAntwortB.setRows(1);
@@ -478,6 +486,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneFrage.setBackground(scrollPaneFrage.getBackground());
         scrollPaneFrage.setBorder(null        );
 
+        textAreaFrage.setEditable(false);
         textAreaFrage.setBackground(panelFrage.getBackground());
         textAreaFrage.setColumns(20);
         textAreaFrage.setRows(1);
@@ -506,6 +515,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortG.setBackground(panelAntwortG.getBackground());
         scrollPaneAntwortG.setBorder(null);
 
+        textAreaAntwortG.setEditable(false);
         textAreaAntwortG.setBackground(panelAntwortG.getBackground());
         textAreaAntwortG.setColumns(20);
         textAreaAntwortG.setRows(1);
@@ -547,6 +557,7 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPaneAntwortH.setBackground(panelAntwortH.getBackground());
         scrollPaneAntwortH.setBorder(null);
 
+        textAreaAntwortH.setEditable(false);
         textAreaAntwortH.setBackground(panelAntwortH.getBackground());
         textAreaAntwortH.setColumns(20);
         textAreaAntwortH.setRows(1);
@@ -620,7 +631,7 @@ public class LernenUI extends javax.swing.JFrame {
         jPanelTitel.setBackground(panelBackground.getBackground());
 
         labelTitel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelTitel.setForeground(new java.awt.Color(255, 255, 204));
+        labelTitel.setForeground(new java.awt.Color(240, 240, 240));
         labelTitel.setText("Frage X von Y (ID=Z) Schwierigkeitsgrad=0");
         labelTitel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -632,7 +643,7 @@ public class LernenUI extends javax.swing.JFrame {
         });
 
         labelTimer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelTimer.setForeground(new java.awt.Color(255, 255, 204));
+        labelTimer.setForeground(new java.awt.Color(240, 240, 240));
         labelTimer.setText("00:00");
 
         javax.swing.GroupLayout jPanelTitelLayout = new javax.swing.GroupLayout(jPanelTitel);
@@ -668,6 +679,11 @@ public class LernenUI extends javax.swing.JFrame {
 
         toggleButtonMogeln.setText("Antwort anzeigen");
         toggleButtonMogeln.setPreferredSize(new java.awt.Dimension(120, 23));
+        toggleButtonMogeln.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleButtonMogelnActionPerformed(evt);
+            }
+        });
 
         ButtonEnde.setText("Beenden");
         ButtonEnde.addActionListener(new java.awt.event.ActionListener() {
@@ -828,6 +844,16 @@ public class LernenUI extends javax.swing.JFrame {
         session.getNextSitzungsLernKarte();
         fillWithValues();
     }//GEN-LAST:event_buttonVorActionPerformed
+
+    private void toggleButtonMogelnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonMogelnActionPerformed
+        if (toggleButtonMogeln.isSelected()) {
+            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
+            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(true);
+        } else {
+            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);
+        }
+        fillWithValues();
+    }//GEN-LAST:event_toggleButtonMogelnActionPerformed
 
     /**
      * @param args the command line arguments

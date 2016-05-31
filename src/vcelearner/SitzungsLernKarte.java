@@ -23,6 +23,7 @@ public class SitzungsLernKarte {
         this.lK = lK;
         gemogelt = false;
         mogelnAktiv = false;
+        gegebeneAntworten = new ArrayList<>();
     }
 
     public ArrayList<PotentielleAntwort> getGegebeneAntworten() {
