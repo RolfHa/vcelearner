@@ -70,7 +70,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
         labelTitel.setText(session.getTitelString(0));
 
-        toggleButtonMogeln.setSelected(session.getAktuelleSitzungsLernKarte().isGemogelt());
+        toggleButtonMogeln.setSelected(session.getAktuelleSitzungsLernKarte().isMogelnAktiv());
 
         toggleButtonWiedervorlage.setSelected(session.getAktuelleSitzungsLernKarte().isWiederVorlage());
 
@@ -80,7 +80,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 if (modus == 0) { //wenn Lernmodus
                     checkBoxesAntwort[i].setEnabled(true); // Checkbox aktivieren
                 } else { // wenn nicht Lernmodus, also Lesemodus
-                    // #WIP hier code zur hervorhebung der richtigen/falschen Antworten
+                    //hier Code zur hervorhebung der richtigen Antworten
                 }
                 if (session.getAktuelleSitzungsLernKarte().getGegebeneAntworten().contains(
                         session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i))) {
@@ -100,6 +100,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
     }
 
     private void leseModus() {
+        modus = 1;
         for (javax.swing.JCheckBox cb : checkBoxesAntwort) {
             cb.setEnabled(false);
         }
@@ -130,8 +131,13 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
                 } else //zwischen = (end-now)/1000; 
                 {
-                    labelTimer.setText(" " + ((end - now) / 60000) + ":"
-                            + (((end - now) / 1000) % 60));
+                    String countdown = ((end - now) / 60000) + ":";
+                    if ((((end - now) / 1000) % 60)>9) {
+                        countdown += (((end - now) / 1000) % 60);
+                    } else {
+                        countdown += "0"+(((end - now) / 1000) % 60);                        
+                    }
+                    labelTimer.setText(countdown);
                 }
             }
         });
@@ -156,9 +162,6 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
         session.getAktuelleSitzungsLernKarte().setWiederVorlage((toggleButtonWiedervorlage.isSelected()));
 
-        if (toggleButtonMogeln.isSelected()) {
-            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
-        }
     }
 
     /**
@@ -260,6 +263,11 @@ public class LernenUIMockup extends javax.swing.JFrame {
         });
 
         toggleButtonMogeln.setText("Antwort anzeigen");
+        toggleButtonMogeln.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleButtonMogelnActionPerformed(evt);
+            }
+        });
 
         ButtonEnde.setText("Beenden");
         ButtonEnde.addActionListener(new java.awt.event.ActionListener() {
@@ -513,6 +521,15 @@ public class LernenUIMockup extends javax.swing.JFrame {
             leseModus();
         }
     }//GEN-LAST:event_ButtonEndeActionPerformed
+
+    private void toggleButtonMogelnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonMogelnActionPerformed
+        if (toggleButtonMogeln.isSelected()) {
+            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
+            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(true);
+        } else {
+            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);            
+        }
+    }//GEN-LAST:event_toggleButtonMogelnActionPerformed
 
     /**
      * @param args the command line arguments

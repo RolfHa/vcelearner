@@ -17,6 +17,7 @@ public class SitzungsLernKarte {
     private ArrayList<PotentielleAntwort> gegebeneAntworten;
     private boolean wiederVorlage;
     private boolean gemogelt;
+    private boolean mogelnAktiv;
 
     public SitzungsLernKarte(LernKarte lK) {
         this.lK = lK;
@@ -48,6 +49,14 @@ public class SitzungsLernKarte {
 
     public LernKarte getlK() {
         return lK;
+    }
+
+    public boolean isMogelnAktiv() {
+        return mogelnAktiv;
+    }
+
+    public void setMogelnAktiv(boolean mogelnAktiv) {
+        this.mogelnAktiv = mogelnAktiv;
     }
 
 }
