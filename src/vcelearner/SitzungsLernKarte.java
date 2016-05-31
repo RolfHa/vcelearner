@@ -21,6 +21,8 @@ public class SitzungsLernKarte {
 
     public SitzungsLernKarte(LernKarte lK) {
         this.lK = lK;
+        gemogelt = false;
+        mogelnAktiv = false;
     }
 
     public ArrayList<PotentielleAntwort> getGegebeneAntworten() {

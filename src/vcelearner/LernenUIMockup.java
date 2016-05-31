@@ -68,7 +68,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
         textAreaFrage.setText(session.getAktuelleSitzungsLernKarte().getlK().getFrage());
 
-        labelTitel.setText(session.getTitelString(0));
+        labelTitel.setText(session.getTitelString(0) + " höehe: " + calcStringHoehe(textAreaFrage.getText(), textAreaFrage.getFont())+" zeile: "+calcStringHoehe("pew", textAreaFrage.getFont()));
 
         toggleButtonMogeln.setSelected(session.getAktuelleSitzungsLernKarte().isMogelnAktiv());
 
@@ -132,10 +132,10 @@ public class LernenUIMockup extends javax.swing.JFrame {
                 } else //zwischen = (end-now)/1000; 
                 {
                     String countdown = ((end - now) / 60000) + ":";
-                    if ((((end - now) / 1000) % 60)>9) {
+                    if ((((end - now) / 1000) % 60) > 9) {
                         countdown += (((end - now) / 1000) % 60);
                     } else {
-                        countdown += "0"+(((end - now) / 1000) % 60);                        
+                        countdown += "0" + (((end - now) / 1000) % 60);
                     }
                     labelTimer.setText(countdown);
                 }
@@ -162,6 +162,27 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
         session.getAktuelleSitzungsLernKarte().setWiederVorlage((toggleButtonWiedervorlage.isSelected()));
 
+    }
+
+    private static int calcZeilenZahl(String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        int zeilen = 1;
+        int pos = 0;
+        while ((pos = text.indexOf("\n", pos) + 1) != 0) {
+            zeilen++;
+        }
+        return zeilen;
+    }
+
+    private static int calcStringHoehe(String text, java.awt.Font font) {
+        int hoehe = 0;
+        java.awt.FontMetrics metrik = new java.awt.FontMetrics(font) {
+        };
+        hoehe = metrik.getHeight();
+        hoehe *= calcZeilenZahl(text);
+        return hoehe;
     }
 
     /**
@@ -527,7 +548,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
             session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
             session.getAktuelleSitzungsLernKarte().setMogelnAktiv(true);
         } else {
-            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);            
+            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);
         }
     }//GEN-LAST:event_toggleButtonMogelnActionPerformed
 
