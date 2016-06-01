@@ -144,6 +144,11 @@ public class LernenUI extends javax.swing.JFrame {
         fillWithValues();
     }
 
+    private void beendeLernModus() {
+        session.speichereInDB();
+        leseModus();
+    }
+
     private void timerZaehlt() {
 
         zaehlerLaeuft = true;
@@ -163,6 +168,7 @@ public class LernenUI extends javax.swing.JFrame {
                     //startButton.setEnabled( true );
                     //JOptionPane.showMessageDialog( null, "BING!" );
                     timer.stop();
+                    beendeLernModus();
                     zaehlerLaeuft = false;
 
                 } else //zwischen = (end-now)/1000; 
@@ -809,6 +815,11 @@ public class LernenUI extends javax.swing.JFrame {
         });
 
         textFieldGeheZu.setNextFocusableComponent(toggleButtonWiedervorlage);
+        textFieldGeheZu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldGeheZuKeyPressed(evt);
+            }
+        });
 
         buttonGeheZu.setText("gehe zu:");
         buttonGeheZu.setNextFocusableComponent(textFieldGeheZu);
@@ -969,8 +980,7 @@ public class LernenUI extends javax.swing.JFrame {
 
     private void ButtonEndeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEndeActionPerformed
         if (modus == 0) {
-            session.speichereInDB();
-            leseModus();
+            beendeLernModus();
         }
     }//GEN-LAST:event_ButtonEndeActionPerformed
 
@@ -1057,6 +1067,15 @@ public class LernenUI extends javax.swing.JFrame {
     }
     fillWithValues();
     }//GEN-LAST:event_spinnerFontSizeStateChanged
+    private void textFieldGeheZuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldGeheZuKeyPressed
+        // key=10 heisst Enter o. Return-Taste gedrückt
+        int key = evt.getKeyCode();
+        if (key == java.awt.event.KeyEvent.VK_ENTER) {
+            cache();
+            session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
+            fillWithValues();
+        }
+    }//GEN-LAST:event_textFieldGeheZuKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1096,7 +1115,7 @@ public class LernenUI extends javax.swing.JFrame {
     private javax.swing.JPanel[] panelsAntwort;
     private int modus = 0; //LernModus = 0, LeseModus = 1
     private javax.swing.JCheckBox[] checkBoxesAntwort;
-    Boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
+    boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
     int timerDauer; // max. Laufzeit des Timers (aus der Vorauswahlmodul in Minuten)
     private javax.swing.JTextArea[] textAreasAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables
