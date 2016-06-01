@@ -124,8 +124,8 @@ public class LernenUI extends javax.swing.JFrame {
     }
 
     private void beendeLernModus() {
-            session.speichereInDB();
-            leseModus();
+        session.speichereInDB();
+        leseModus();
     }
 
     private void timerZaehlt() {
@@ -462,7 +462,6 @@ public class LernenUI extends javax.swing.JFrame {
         textAreaAntwortB.setColumns(20);
         textAreaAntwortB.setRows(1);
         textAreaAntwortB.setBorder(null);
-        textAreaAntwortB.setPreferredSize(new java.awt.Dimension(164, 22));
         scrollPaneAntwortB.setViewportView(textAreaAntwortB);
 
         javax.swing.GroupLayout panelAntwortBLayout = new javax.swing.GroupLayout(panelAntwortB);
@@ -706,6 +705,12 @@ public class LernenUI extends javax.swing.JFrame {
             }
         });
 
+        textFieldGeheZu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldGeheZuKeyPressed(evt);
+            }
+        });
+
         buttonGeheZu.setText("gehe zu:");
         buttonGeheZu.setPreferredSize(new java.awt.Dimension(120, 23));
         buttonGeheZu.addActionListener(new java.awt.event.ActionListener() {
@@ -859,6 +864,16 @@ public class LernenUI extends javax.swing.JFrame {
         }
         fillWithValues();
     }//GEN-LAST:event_toggleButtonMogelnActionPerformed
+
+    private void textFieldGeheZuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldGeheZuKeyPressed
+        // key=10 heisst Enter o. Return-Taste gedrückt
+        int key = evt.getKeyCode();
+        if (key == java.awt.event.KeyEvent.VK_ENTER) {
+            cache();
+            session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
+            fillWithValues();
+        }
+    }//GEN-LAST:event_textFieldGeheZuKeyPressed
 
     /**
      * @param args the command line arguments
