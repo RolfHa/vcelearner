@@ -6,6 +6,7 @@
 package vcelearner;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
@@ -260,6 +261,8 @@ public class LernenUI extends javax.swing.JFrame {
         textFieldGeheZu = new javax.swing.JTextField();
         buttonGeheZu = new javax.swing.JButton();
         toggleButtonWiedervorlage = new javax.swing.JToggleButton();
+        spinnerFontSize = new javax.swing.JSpinner();
+        labelFontSize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -736,7 +739,7 @@ public class LernenUI extends javax.swing.JFrame {
             .addGroup(jPanelTitelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(labelTitel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 831, Short.MAX_VALUE)
                 .addComponent(labelTimer)
                 .addGap(55, 55, 55))
         );
@@ -807,6 +810,17 @@ public class LernenUI extends javax.swing.JFrame {
             }
         });
 
+        spinnerFontSize.setModel(new javax.swing.SpinnerNumberModel(13, 8, 24, 1));
+        spinnerFontSize.setBorder(null);
+        spinnerFontSize.setOpaque(false);
+        spinnerFontSize.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinnerFontSizeStateChanged(evt);
+            }
+        });
+
+        labelFontSize.setText("Schriftgröße:");
+
         javax.swing.GroupLayout panelNavigationLayout = new javax.swing.GroupLayout(panelNavigation);
         panelNavigation.setLayout(panelNavigationLayout);
         panelNavigationLayout.setHorizontalGroup(
@@ -814,8 +828,8 @@ public class LernenUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createSequentialGroup()
                 .addGroup(panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
-                        .addComponent(toggleButtonMogeln, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                        .addContainerGap(22, Short.MAX_VALUE)
+                        .addComponent(toggleButtonMogeln, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -830,6 +844,14 @@ public class LernenUI extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(textFieldGeheZu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
+            .addGroup(panelNavigationLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelFontSize)
+                    .addGroup(panelNavigationLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(spinnerFontSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         panelNavigationLayout.setVerticalGroup(
             panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -848,7 +870,10 @@ public class LernenUI extends javax.swing.JFrame {
                 .addComponent(toggleButtonMogeln, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ButtonEnde, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(labelFontSize)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spinnerFontSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout panelBackgroundLayout = new javax.swing.GroupLayout(panelBackground);
@@ -860,7 +885,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addGroup(panelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelTitel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBackgroundLayout.createSequentialGroup()
-                        .addComponent(scrollPane1)
+                        .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(panelNavigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -983,6 +1008,15 @@ public class LernenUI extends javax.swing.JFrame {
         scrollPane1.dispatchEvent(evt);
     }//GEN-LAST:event_scrollPaneAntwortHMouseWheelMoved
 
+    private void spinnerFontSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinnerFontSizeStateChanged
+    Font f = textAreaFrage.getFont().deriveFont(Float.valueOf(spinnerFontSize.getValue().toString()));
+    textAreaFrage.setFont(f);
+    for (javax.swing.JTextArea taa : textAreasAntwort) {
+        taa.setFont(f);
+    }
+    fillWithValues();
+    }//GEN-LAST:event_spinnerFontSizeStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1038,6 +1072,7 @@ public class LernenUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkBoxG;
     private javax.swing.JCheckBox checkBoxH;
     private javax.swing.JPanel jPanelTitel;
+    private javax.swing.JLabel labelFontSize;
     private javax.swing.JLabel labelTimer;
     private javax.swing.JLabel labelTitel;
     private javax.swing.JPanel panelAntwortA;
@@ -1062,6 +1097,7 @@ public class LernenUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPaneAntwortG;
     private javax.swing.JScrollPane scrollPaneAntwortH;
     private javax.swing.JScrollPane scrollPaneFrage;
+    private javax.swing.JSpinner spinnerFontSize;
     private javax.swing.JTextArea textAreaAntwortA;
     private javax.swing.JTextArea textAreaAntwortB;
     private javax.swing.JTextArea textAreaAntwortC;
