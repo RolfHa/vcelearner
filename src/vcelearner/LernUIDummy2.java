@@ -15,6 +15,21 @@ public class LernUIDummy2 {
 
     public static void main(String[] args) {
         ArrayList<LernKarte> lKs = LernKarte.getAll();
+        ArrayList<LernKarte> lKsToRemove = new ArrayList<>();
+        for (LernKarte lK : lKs) {
+            boolean keep=false;
+            for (Themenbereich tB : lK.gettBs()) {
+                if (tB.getId() == 1) {
+                    keep=true;
+                }
+            }
+            if (!keep) {
+                lKsToRemove.add(lK);
+            }
+        }
+        for (LernKarte lK : lKsToRemove) {
+            lKs.remove(lK);
+        }
         BenutzerSitzung session = new BenutzerSitzung(0,
                 new Benutzer("Petra", "Panke"), lKs);
 /* abgeänderte Kopie aus UI-main */

@@ -113,10 +113,8 @@ public class LernenUI extends javax.swing.JFrame {
                 panelsAntwort[i].setVisible(true);
 
                 // weiß und grau für Fragen, bei denen mogeln nicht aktiv ist
-                if (i % 2 == 0 && session.getAktuelleSitzungsLernKarte().isMogelnAktiv() == false) {
-                    textAreasAntwort[i].setBackground(new java.awt.Color(255, 255, 255));
-                } else if (i % 2 != 0 && session.getAktuelleSitzungsLernKarte().isMogelnAktiv() == false) {
-                    textAreasAntwort[i].setBackground(new java.awt.Color(240, 240, 240));
+                if (session.getAktuelleSitzungsLernKarte().isMogelnAktiv() == false) {
+                    textAreasAntwort[i].setBackground(panelsAntwort[i].getBackground());
                 }
 
             } else {
