@@ -5,6 +5,7 @@
  */
 package vcelearner;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
@@ -65,6 +66,9 @@ public class LernenUIMockup extends javax.swing.JFrame {
         } else {
             buttonZurueck.setEnabled(false);
         }
+        
+//        toggleButtonMogeln.setSelected(false);                              // Mogel-Button-reset
+//        session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);
 
         textAreaFrage.setText(session.getAktuelleSitzungsLernKarte().getlK().getFrage());
 
@@ -544,12 +548,44 @@ public class LernenUIMockup extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonEndeActionPerformed
 
     private void toggleButtonMogelnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleButtonMogelnActionPerformed
-        if (toggleButtonMogeln.isSelected()) {
-            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
-            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(true);
-        } else {
-            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);
-        }
+//        if (toggleButtonMogeln.isSelected()) {
+//            session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
+//            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(true);
+//        } else {
+//            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(false);
+//        }
+        
+        checkBoxA.setSelected(true);
+        textAreaFrage.setText("Geschummelt!");
+        System.out.println("testing");
+ 
+
+//        session.getAktuelleSitzungsLernKarte().setGemogeltTrue();
+//        
+//        if (session.getAktuelleSitzungsLernKarte().isMogelnAktiv() == false) {
+//            session.getAktuelleSitzungsLernKarte().setMogelnAktiv(true);
+//            
+//            for (int i = 0; i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size(); i++) {
+//                if (session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i).isRichtigkeit() == true) {
+//                    checkBoxesAntwort[i].setSelected(true);
+//                    checkBoxesAntwort[i].setText("Richtig");
+//                    textAreasAntwort[i].setBackground(Color.GREEN.brighter());
+//                } else {
+//                    checkBoxesAntwort[i].setSelected(false);
+//                    checkBoxesAntwort[i].setText("Falsch");
+//                    textAreasAntwort[i].setBackground(Color.pink);
+//                }
+//            }
+//
+//        } else {
+//            fillWithValues();
+//            for (int i = 0; i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size(); i++) {
+//                checkBoxesAntwort[i].setSelected(false);
+//                textAreasAntwort[i].setBackground(Color.white);
+//            }
+//        }
+
+        
     }//GEN-LAST:event_toggleButtonMogelnActionPerformed
 
     /**
