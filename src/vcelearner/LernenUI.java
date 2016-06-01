@@ -262,9 +262,10 @@ public class LernenUI extends javax.swing.JFrame {
         toggleButtonWiedervorlage = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(850, 0));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         panelBackground.setBackground(new java.awt.Color(153, 153, 153));
+        panelBackground.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         panelAntwortD.setBackground(new java.awt.Color(240,240,240));
 
@@ -273,6 +274,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortD.setBackground(panelAntwortD.getBackground());
         scrollPaneAntwortD.setBorder(null);
+        scrollPaneAntwortD.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortD.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortD.setWheelScrollingEnabled(false);
         scrollPaneAntwortD.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -304,7 +307,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxD)
-                    .addComponent(scrollPaneAntwortD, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortD, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -315,6 +318,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortC.setBackground(panelAntwortC.getBackground());
         scrollPaneAntwortC.setBorder(null);
+        scrollPaneAntwortC.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortC.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortC.setWheelScrollingEnabled(false);
         scrollPaneAntwortC.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -346,7 +351,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxC)
-                    .addComponent(scrollPaneAntwortC, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortC, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -354,6 +359,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortA.setBackground(panelAntwortA.getBackground());
         scrollPaneAntwortA.setBorder(null);
+        scrollPaneAntwortA.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortA.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortA.setWheelScrollingEnabled(false);
         scrollPaneAntwortA.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -389,7 +396,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(panelAntwortALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxA)
-                    .addComponent(scrollPaneAntwortA, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortA, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -397,6 +404,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortF.setBackground(panelAntwortF.getBackground());
         scrollPaneAntwortF.setBorder(null);
+        scrollPaneAntwortF.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortF.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortF.setWheelScrollingEnabled(false);
         scrollPaneAntwortF.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -431,7 +440,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortFLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxF)
-                    .addComponent(scrollPaneAntwortF, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortF, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -447,6 +456,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortE.setBackground(panelAntwortE.getBackground());
         scrollPaneAntwortE.setBorder(null);
+        scrollPaneAntwortE.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortE.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortE.setWheelScrollingEnabled(false);
         scrollPaneAntwortE.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -478,7 +489,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxE)
-                    .addComponent(scrollPaneAntwortE, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortE, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -489,6 +500,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortB.setBackground(panelAntwortB.getBackground());
         scrollPaneAntwortB.setBorder(null);
+        scrollPaneAntwortB.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortB.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortB.setWheelScrollingEnabled(false);
         scrollPaneAntwortB.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -511,7 +524,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(checkBoxB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneAntwortB, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                .addComponent(scrollPaneAntwortB, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
         panelAntwortBLayout.setVerticalGroup(
@@ -520,7 +533,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxB)
-                    .addComponent(scrollPaneAntwortB, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortB, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -529,6 +542,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneFrage.setBackground(scrollPaneFrage.getBackground());
         scrollPaneFrage.setBorder(null        );
+        scrollPaneFrage.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneFrage.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneFrage.setWheelScrollingEnabled(false);
         scrollPaneFrage.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -564,6 +579,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortG.setBackground(panelAntwortG.getBackground());
         scrollPaneAntwortG.setBorder(null);
+        scrollPaneAntwortG.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortG.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortG.setWheelScrollingEnabled(false);
         scrollPaneAntwortG.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
@@ -598,7 +615,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxG)
-                    .addComponent(scrollPaneAntwortG, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortG, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -614,6 +631,8 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPaneAntwortH.setBackground(panelAntwortH.getBackground());
         scrollPaneAntwortH.setBorder(null);
+        scrollPaneAntwortH.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAntwortH.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPaneAntwortH.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
                 scrollPaneAntwortHMouseWheelMoved(evt);
@@ -644,7 +663,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAntwortHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkBoxH)
-                    .addComponent(scrollPaneAntwortH, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                    .addComponent(scrollPaneAntwortH, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -717,9 +736,9 @@ public class LernenUI extends javax.swing.JFrame {
             .addGroup(jPanelTitelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(labelTitel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTimer)
-                .addGap(50, 50, 50))
+                .addGap(55, 55, 55))
         );
         jPanelTitelLayout.setVerticalGroup(
             jPanelTitelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -742,7 +761,7 @@ public class LernenUI extends javax.swing.JFrame {
             }
         });
 
-        toggleButtonMogeln.setText("Antwort anzeigen");
+        toggleButtonMogeln.setText("Antwort zeigen");
         toggleButtonMogeln.setNextFocusableComponent(ButtonEnde);
         toggleButtonMogeln.setPreferredSize(new java.awt.Dimension(120, 23));
         toggleButtonMogeln.addActionListener(new java.awt.event.ActionListener() {
@@ -795,10 +814,10 @@ public class LernenUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createSequentialGroup()
                 .addGroup(panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(toggleButtonMogeln, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(toggleButtonMogeln, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createSequentialGroup()
-                        .addContainerGap(24, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNavigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(buttonZurueck, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
@@ -841,7 +860,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addGroup(panelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelTitel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBackgroundLayout.createSequentialGroup()
-                        .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(scrollPane1)
                         .addGap(0, 0, 0)
                         .addComponent(panelNavigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -851,7 +870,7 @@ public class LernenUI extends javax.swing.JFrame {
                 .addComponent(jPanelTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(panelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                    .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                     .addGroup(panelBackgroundLayout.createSequentialGroup()
                         .addComponent(panelNavigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
