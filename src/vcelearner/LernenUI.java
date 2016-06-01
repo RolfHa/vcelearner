@@ -1052,6 +1052,9 @@ public class LernenUI extends javax.swing.JFrame {
     for (javax.swing.JTextArea taa : textAreasAntwort) {
         taa.setFont(f);
     }
+     for (javax.swing.JCheckBox cba : checkBoxesAntwort) {
+        cba.setFont(f);
+    }
     fillWithValues();
     }//GEN-LAST:event_spinnerFontSizeStateChanged
 
