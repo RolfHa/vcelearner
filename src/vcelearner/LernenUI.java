@@ -123,6 +123,11 @@ public class LernenUI extends javax.swing.JFrame {
         fillWithValues();
     }
 
+    private void beendeLernModus() {
+            session.speichereInDB();
+            leseModus();
+    }
+
     private void timerZaehlt() {
 
         zaehlerLaeuft = true;
@@ -142,6 +147,7 @@ public class LernenUI extends javax.swing.JFrame {
                     //startButton.setEnabled( true );
                     //JOptionPane.showMessageDialog( null, "BING!" );
                     timer.stop();
+                    beendeLernModus();
                     zaehlerLaeuft = false;
 
                 } else //zwischen = (end-now)/1000; 
@@ -834,8 +840,7 @@ public class LernenUI extends javax.swing.JFrame {
 
     private void ButtonEndeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEndeActionPerformed
         if (modus == 0) {
-            session.speichereInDB();
-            leseModus();
+            beendeLernModus();
         }
     }//GEN-LAST:event_ButtonEndeActionPerformed
 
@@ -893,7 +898,7 @@ public class LernenUI extends javax.swing.JFrame {
     private javax.swing.JPanel[] panelsAntwort;
     private int modus = 0; //LernModus = 0, LeseModus = 1
     private javax.swing.JCheckBox[] checkBoxesAntwort;
-    Boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
+    boolean zaehlerLaeuft = false;  // gibt an ob der Timr noch läuft
     int timerDauer; // max. Laufzeit des Timers (aus der Vorauswahlmodul in Minuten)
     private javax.swing.JTextArea[] textAreasAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables

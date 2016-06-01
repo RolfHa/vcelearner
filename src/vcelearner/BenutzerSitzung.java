@@ -23,8 +23,16 @@ public class BenutzerSitzung {
         this.zeitVorgabe = zeitVorgabe;
         this.benutzer = benutzer;
         sLKs = new ArrayList<>();
+//        ArrayList<Benutzer2LernKarte> b2LKs = Benutzer2LernKarte.getByBenutzer();
+//        ArrayList<Integer> wiederVorlageLKIDs = new ArrayList<>();
+//        for (Benutzer2LernKarte b2LK : b2LKs) {
+//            wiederVorlageLKIDs.add(b2LK.getLernKarte_id);
+//        }
         for (LernKarte lK : lKs) {
             this.sLKs.add(new SitzungsLernKarte(lK));
+//            if (wiederVorlageLKIDs.contains(lK.getID)) {
+//                this.sLKs.get(this.sLKs.size()-1).setWiederVorlage(true);
+//            }
         }
     }
 
