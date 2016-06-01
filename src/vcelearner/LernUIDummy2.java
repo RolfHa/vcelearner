@@ -15,7 +15,7 @@ public class LernUIDummy2 {
 
     public static void main(String[] args) {
         ArrayList<LernKarte> lKs = LernKarte.getAll();
-        BenutzerSitzung session = new BenutzerSitzung(20,
+        BenutzerSitzung session = new BenutzerSitzung(0,
                 new Benutzer("Petra", "Panke"), lKs);
 /* abgeänderte Kopie aus UI-main */
         try {

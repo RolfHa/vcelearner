@@ -39,7 +39,9 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPane1.getVerticalScrollBar().setUnitIncrement(15);
         timerDauer = session.getZeitVorgabe();
-        timerZaehlt();
+        if (session.getZeitVorgabe()>0) {
+            timerZaehlt();
+        }
         fillWithValues();
 
     }
@@ -61,7 +63,9 @@ public class LernenUI extends javax.swing.JFrame {
 
         scrollPane1.getVerticalScrollBar().setUnitIncrement(15);
         timerDauer = session.getZeitVorgabe();
-        timerZaehlt();
+        if (session.getZeitVorgabe()>0) {
+            timerZaehlt();
+        }
         fillWithValues();
     }
 
@@ -139,6 +143,9 @@ public class LernenUI extends javax.swing.JFrame {
         modus = 1;
         for (javax.swing.JCheckBox cb : checkBoxesAntwort) {
             cb.setEnabled(false);
+        }
+        for (SitzungsLernKarte sLK : session.getsLKs()) {
+            sLK.setMogelnAktiv(true);
         }
         session.geheZu(1);
         fillWithValues();
