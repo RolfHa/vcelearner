@@ -294,7 +294,6 @@ public class LernenUI extends javax.swing.JFrame {
         labelFontSize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         panelBackground.setBackground(new java.awt.Color(153, 153, 153));
         panelBackground.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -784,6 +783,7 @@ public class LernenUI extends javax.swing.JFrame {
 
         panelNavigation.setBackground(panelBackground.getBackground());
 
+        buttonVor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonVor.setText(">>");
         buttonVor.setNextFocusableComponent(buttonZurueck);
         buttonVor.setPreferredSize(new java.awt.Dimension(120, 23));
@@ -810,6 +810,7 @@ public class LernenUI extends javax.swing.JFrame {
             }
         });
 
+        buttonZurueck.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonZurueck.setText("<<");
         buttonZurueck.setNextFocusableComponent(buttonGeheZu);
         buttonZurueck.setPreferredSize(new java.awt.Dimension(120, 23));
